@@ -2,13 +2,14 @@
 
 header('Access-Control-Allow-Origin: *');
 
-/* замените электронную почту на действующую почту,  с которой вам будет приходить письмо  */
-$headers = "From: 8239993@mail.ru";​ 
-​
-$message = print_r($_POST,true);
-/* замените электронную почту на вашу действующую почту,  на которую вам будет приходить письмо  */
-@mail('8239993@mail.ru', 'Tilda TEST', $message, $headers);
+$EmailTo = "8239993@gmail.com"; //сюда будут приходить данные из формы
+$EmailFrom = '8239993@mail.ru'; //письма будут приходить от этого отправителя
+$Subject = "Заполнили форму на сайте";
 
-echo "ok";
+$message = print_r($_POST,true);
+
+$success = mail($EmailTo, $Subject, $message, "From: <$EmailFrom>");
+if($success) { echo "Успешно отправлено"; }
+else{  echo "Ошибка!"; }
 
 ?>
